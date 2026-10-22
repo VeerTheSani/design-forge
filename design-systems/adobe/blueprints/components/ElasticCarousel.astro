@@ -1,0 +1,199 @@
+---
+/**
+ * DESIGN FORGE BLUEPRINT: ElasticCarousel.astro
+ * Brand Instance: KINETIX AI (Autonomous Neural Compute & Spatial Engineering Cloud)
+ * Exact reverse-engineered implementation of Adobe's Section 3:
+ *  - Rounded sheet overlap (`border-radius: 32px 32px 0px 0px`) that slides over the parallax Hero
+ *  - 56px / 56px line-height / -1.68px tracking Display Black centered H2
+ *  - 5 Vertical Cards on `--s2a-color-gray-75` (`#f3f3f3`) with `elasticCarouselSlideIn` + `elasticItemsGapShrink`
+ *  - Auto-loads `/media/images/NANO-IMG-01..05.png` when dropped into `/public/media/images/`
+ */
+export interface CarouselItem {
+  badgeText: string;
+  badgeColor: string;
+  category: string;
+  visualGradient: string;
+  visualTag: string;
+  promptSlotId: string;
+  imageFile?: string;
+  videoFile?: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  heading?: string;
+  subheading?: string;
+  items?: CarouselItem[];
+}
+
+const defaultItems: CarouselItem[] = [
+  {
+    badgeText: 'Kx',
+    badgeColor: 'linear-gradient(135deg, #FA0F00, #FF5C00)',
+    category: 'KX-4 Reasoning Core',
+    visualGradient: 'radial-gradient(circle at 65% 30%, #ff3b30 0%, #990a00 55%, #180200 100%)',
+    visualTag: 'NANO-IMG-01 • 4:5 (294×394)',
+    promptSlotId: 'NANO-IMG-01',
+    imageFile: '/media/images/Gemini_Generated_Image_a32suia32suia32s.png',
+    title: 'Sub-12ms speculative inference.',
+    description: 'Deploy multi-modal frontier reasoning across distributed H200 tensor clusters with zero cold-start latency.',
+  },
+  {
+    badgeText: 'Sp',
+    badgeColor: '#7A28FF',
+    category: 'Spatial Shader Studio',
+    visualGradient: 'radial-gradient(circle at 35% 35%, #7a28ff 0%, #3b108c 55%, #11052C 100%)',
+    visualTag: 'NANO-IMG-02 • 4:5 (294×394)',
+    promptSlotId: 'NANO-IMG-02',
+    imageFile: '/media/images/Gemini_Generated_Image_h2tmpoh2tmpoh2tm.png',
+    title: 'Real-time WebGPU world models.',
+    description: 'Synthesize physically based refractive glass, volumetric lighting, and 120fps interactive 3D scenes from code.',
+  },
+  {
+    badgeText: 'Sw',
+    badgeColor: '#E31B0C',
+    category: 'Autonomous Code Swarms',
+    visualGradient: 'radial-gradient(circle at 70% 35%, #ff7665 0%, #b51700 55%, #2e0600 100%)',
+    visualTag: 'NANO-IMG-03 • 4:5 (294×394)',
+    promptSlotId: 'NANO-IMG-03',
+    imageFile: '/media/images/Gemini_Generated_Image_wi9agmwi9agmwi9a.png',
+    title: 'Self-healing microVM sandboxes.',
+    description: 'Spin up 10,000 parallel coding agents that write, test, benchmark, and ship full-stack architecture.',
+  },
+  {
+    badgeText: 'Mm',
+    badgeColor: '#3B63FB',
+    category: 'Deterministic Context Graph',
+    visualGradient: 'radial-gradient(circle at 60% 35%, #4b75ff 0%, #1532ad 55%, #070b1e 100%)',
+    visualTag: 'NANO-IMG-04 • 4:5 (294×394)',
+    promptSlotId: 'NANO-IMG-04',
+    imageFile: '/media/images/Gemini_Generated_Image_m3tbi4m3tbi4m3tb.png',
+    title: '500M+ token AST memory fabric.',
+    description: 'Index your entire monorepo, design tokens, and production telemetry into a zero-hallucination graph.',
+  },
+  {
+    badgeText: 'Vp',
+    badgeColor: 'linear-gradient(135deg, #3B63FB, #12B867)',
+    category: 'Sovereign Enterprise VPC',
+    visualGradient: 'radial-gradient(circle at 50% 35%, #2bd17d 0%, #05834e 55%, #002119 100%)',
+    visualTag: 'FLOW-VIDEO-04 • 9:16 Loop',
+    promptSlotId: 'FLOW-VIDEO-04',
+    videoFile: '/media/videos/Frosted_glass_sheets_rising_from%E2%80%A6_20261017221258.mp4',
+    title: 'Air-gapped bare-metal security.',
+    description: 'Run KINETIX inside your own VPC with SOC2 Type II compliance, custom weights, and zero data retention.',
+  },
+];
+
+const {
+  heading = 'Engineered for autonomous scale.',
+  subheading = 'Five specialized neural compute engines unified under one deterministic API—built on the exact spatial math and motion choreography extracted from Adobe S2A.',
+  items = defaultItems,
+} = Astro.props;
+---
+
+<section
+  id="carousel"
+  class="relative z-30 -mt-8 rounded-t-[32px] bg-white text-[#131313] pt-20 pb-24 px-6 sm:px-12 shadow-[0_-20px_50px_rgba(0,0,0,0.22)]"
+>
+  <div class="max-w-[1440px] mx-auto">
+    <!-- Extracted Section Header (56px / 56px line-height / -1.68px tracking) -->
+    <div class="text-center max-w-[780px] mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3f3f3] border border-black/[0.08] text-[11px] font-mono uppercase tracking-widest text-[#131313] mb-4">
+        <span class="w-2 h-2 rounded-full bg-[#FA0F00]"></span>
+        <span>KINETIX MODULAR ARCHITECTURE • 5 ELASTIC SLOTS</span>
+      </div>
+      <h2
+        class="font-black tracking-[-0.03em] text-[#131313] mb-4"
+        style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.0;"
+      >
+        {heading}
+      </h2>
+      <p class="text-[18px] sm:text-[20px] leading-[1.35] text-[#505050]">
+        {subheading}
+      </p>
+    </div>
+
+    <!-- Extracted 5-Column Elastic Carousel (`elasticCarouselSlideIn` + `elasticItemsGapShrink`) -->
+    <div
+      data-df-elastic-carousel
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"
+    >
+      {
+        items.map((item) => (
+          <a
+            href="/design-system#prompts"
+            data-df-elastic-item
+            data-df-bento-card
+            class="group flex flex-col justify-between rounded-[20px] bg-[#f3f3f3] p-4 transition-shadow duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.16)] border border-black/[0.04]"
+          >
+            <!-- Top Pill Header -->
+            <div>
+              <div class="flex items-center gap-2.5 mb-3.5 px-1 pt-1">
+                <span
+                  class="w-6 h-6 rounded-[6px] flex items-center justify-center text-white text-[11px] font-black shrink-0"
+                  style={`background: ${item.badgeColor};`}
+                >
+                  {item.badgeText}
+                </span>
+                <span class="font-bold text-[14px] text-[#131313] tracking-[-0.01em] truncate">
+                  {item.category}
+                </span>
+              </div>
+
+              <!-- Middle Art-Directed Visual Slot (280px Tall Rounded Media Stage) -->
+              <div class="relative h-[280px] rounded-[14px] overflow-hidden mb-4">
+                <div
+                  data-df-card-media
+                  class="relative w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)] flex flex-col justify-between p-4 text-white"
+                  style={`background: ${item.visualGradient};`}
+                >
+                  {item.videoFile ? (
+                    <video
+                      src={item.videoFile}
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-[25%_25%] z-0 pointer-events-none"
+                      onerror="this.style.display='none'"
+                    />
+                  ) : (
+                    <img
+                      src={item.imageFile}
+                      alt={item.title}
+                      class="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-[25%_25%] z-0 pointer-events-none"
+                      onerror="this.style.display='none'"
+                    />
+                  )}
+
+                  <!-- Top Slot Badge -->
+                  <div class="relative z-10 w-full flex items-center justify-between">
+                    <span class="px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md text-[10px] font-mono uppercase tracking-wider border border-white/15">
+                      {item.visualTag}
+                    </span>
+                  </div>
+
+                  <div class="relative z-10 text-[11px] font-mono text-white/90 flex items-center justify-between bg-black/50 backdrop-blur-md border border-white/15 px-2.5 py-1.5 rounded-lg">
+                    <span>{item.promptSlotId}</span>
+                    <span data-df-card-arrow class="font-sans font-bold text-white">Prompt →</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Copy Block -->
+            <div class="px-1 pb-1">
+              <h3 class="font-bold text-[17px] leading-[1.25] text-[#131313] mb-1.5 tracking-[-0.01em]">
+                {item.title}
+              </h3>
+              <p class="text-[14px] leading-[1.4] text-[#505050] line-clamp-3">
+                {item.description}
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

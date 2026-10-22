@@ -1,0 +1,248 @@
+---
+/**
+ * DESIGN FORGE BLUEPRINT: BentoShowcase.astro
+ * Brand Instance: KINETIX AI (Autonomous Neural Compute & Spatial Engineering Cloud)
+ * Exact reverse-engineered implementation of Adobe's "Explore what's new" Bento Grid:
+ *  - Asymmetric 12-column Bento layout (12-col wide lead banner + 4/4/4 editorial feature cards)
+ *  - Extracted 24px / 24px line-height / -0.96px letter-spacing Display Black card headings
+ *  - Hover elevation (-6px) + inner media zoom (1.045x) + auto-loaded Google Flow / Nano Banana asset slots
+ */
+interface Props {
+  eyebrow?: string;
+  heading?: string;
+  subheading?: string;
+}
+
+const {
+  eyebrow = 'KINETIX PLATFORM RELEASES • Q4 BENCHMARKS',
+  heading = 'Built for frontier engineering.',
+  subheading = 'Every card below uses the exact 12-column asymmetric Bento grid math, 24px Display Black typography, and cubic-bezier(0.42, 0, 0, 1) hover physics extracted from Adobe.',
+} = Astro.props;
+---
+
+<section id="bento" class="bg-[#f8f8f8] text-[#131313] py-24 px-6 sm:px-12 border-t border-black/[0.06]">
+  <div class="max-w-[1440px] mx-auto">
+    <!-- Section Title -->
+    <div class="text-center max-w-[720px] mx-auto mb-14">
+      <div class="text-[12px] font-mono font-bold uppercase tracking-widest text-[#FA0F00] mb-2">{eyebrow}</div>
+      <h2
+        class="font-black tracking-[-0.03em] text-[#131313] mb-3"
+        style="font-size: clamp(2.2rem, 3.8vw, 3.5rem); line-height: 1.0;"
+      >
+        {heading}
+      </h2>
+      <p class="text-[18px] text-[#505050]">{subheading}</p>
+    </div>
+
+    <!-- Asymmetric 12-Column Bento Grid -->
+    <div data-df-bento-grid class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Lead Flagship 12-Col Split Card (1187×540 extracted aspect ratio) -->
+      <article
+        data-df-bento-card
+        class="lg:col-span-12 rounded-[24px] bg-[#131313] text-white overflow-hidden border border-white/10 shadow-[0_16px_40px_rgba(0,0,0,0.12)] grid grid-cols-1 lg:grid-cols-12 min-h-[420px]"
+      >
+        <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2.5 mb-6">
+              <img src="/logo-kinetix.svg" alt="KINETIX" class="w-7 h-7 rounded-[7px]" />
+              <span class="text-[12px] font-mono font-bold tracking-wider text-white/80 uppercase">
+                FLAGSHIP BENTO SLOT • NANO-IMG-06 (1187×540)
+              </span>
+            </div>
+
+            <h3
+              class="font-black text-white mb-4"
+              style="font-size: clamp(1.75rem, 2.5vw, 2.35rem); line-height: 1.05; letter-spacing: -0.04em;"
+            >
+              Turn live neural telemetry into sub-millisecond routing decisions.
+            </h3>
+
+            <p class="text-[16px] leading-[1.45] text-white/75 mb-6">
+              KINETIX Pulse continuously profiles token latency, KV-cache hit rates, and GPU thermal headroom across regions—automatically shifting traffic before bottlenecks occur.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <a
+              href="/design-system#prompts"
+              class="px-6 py-3 rounded-full bg-white text-[#131313] font-bold text-[14px] hover:scale-[1.03] transition-transform"
+            >
+              Copy NANO-IMG-06 Prompt
+            </a>
+            <span data-df-card-arrow class="text-sm font-bold text-white/80">
+              Launch Telemetry Console →
+            </span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 relative overflow-hidden min-h-[300px] bg-gradient-to-br from-[#274dea] via-[#7a28ff] to-[#0e1843]">
+          <div
+            data-df-card-media
+            class="relative w-full h-full p-8 flex flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+          >
+            <!-- Auto-loads /media/images/Gemini_Generated_Image_a32suia32suia32s.png (1.10x overscan crops out bottom-right Gemini watermark) -->
+            <img
+              src="/media/images/Gemini_Generated_Image_a32suia32suia32s.png"
+              alt="KINETIX Pulse Telemetry"
+              class="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-[25%_25%] z-0 pointer-events-none"
+              onerror="this.style.display='none'"
+            />
+
+            <div class="relative z-10 flex justify-between items-center">
+              <span class="px-3 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 text-[11px] font-mono text-emerald-300">
+                ● LIVE CLUSTER: US-EAST-H200
+              </span>
+              <span class="px-3 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 text-[11px] font-mono text-white">
+                NANO-IMG-06 • 21:9 RENDER
+              </span>
+            </div>
+
+            <!-- Compact Bottom Telemetry Strip so the 3D Nano Banana render is unobstructed -->
+            <div class="relative z-10 mt-auto rounded-2xl bg-black/60 backdrop-blur-xl border border-white/20 p-3.5 shadow-2xl flex flex-wrap items-center justify-between gap-4">
+              <div class="flex items-center gap-3 text-xs font-mono">
+                <span class="text-emerald-400 font-bold">99.994% SLA</span>
+                <span class="text-white/40">|</span>
+                <span class="text-white/80">Median TTFB: <strong class="text-white">11.4 ms</strong></span>
+                <span class="text-white/40 hidden sm:inline">|</span>
+                <span class="text-white/80 hidden sm:inline">KV Cache Hit: <strong class="text-white">94.8%</strong></span>
+              </div>
+              <span class="text-[11px] font-mono text-white/75">
+                4,096 Active H200 Nodes
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Row 2: Three 4-Column Bento Cards (429×322 extracted dimensions) -->
+      <article
+        data-df-bento-card
+        class="lg:col-span-4 rounded-[24px] bg-white border border-black/[0.07] overflow-hidden shadow-sm flex flex-col justify-between"
+      >
+        <div class="relative h-[260px] overflow-hidden bg-gradient-to-br from-[#0e1843] via-[#274dea] to-[#729efd]">
+          <div
+            data-df-card-media
+            class="relative w-full h-full p-5 flex flex-col justify-between text-white transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+          >
+            <img
+              src="/media/images/Gemini_Generated_Image_h2tmpoh2tmpoh2tm.png"
+              alt="Surgical Weight Patching"
+              class="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-[25%_25%] z-0 pointer-events-none"
+              onerror="this.style.display='none'"
+            />
+            <span class="relative z-10 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md text-[11px] font-mono w-fit border border-white/15">
+              NANO-IMG-07 • 429×322 Card
+            </span>
+            <div class="relative z-10 mt-auto w-fit px-3 py-1.5 rounded-lg bg-black/55 backdrop-blur-md border border-white/20 text-[11px] font-mono">
+              LoRA Hot-Swap in 40ms
+            </div>
+          </div>
+        </div>
+        <div class="p-7 flex-1 flex flex-col justify-between">
+          <div>
+            <h3
+              class="font-black text-[#131313] mb-2"
+              style="font-size: 24px; line-height: 24px; letter-spacing: -0.96px;"
+            >
+              Fine-tune only the weights you need.
+            </h3>
+            <p class="text-[15px] leading-[1.4] text-[#505050] mb-5">
+              Hot-swap LoRA adapters per tenant request in under 40 milliseconds without reloading base model checkpoints.
+            </p>
+          </div>
+          <a href="/design-system#prompts" class="inline-flex items-center gap-1.5 font-bold text-[14px] text-[#131313]">
+            <span>Copy NANO-IMG-07 Prompt</span>
+            <span data-df-card-arrow>→</span>
+          </a>
+        </div>
+      </article>
+
+      <article
+        data-df-bento-card
+        class="lg:col-span-4 rounded-[24px] bg-white border border-black/[0.07] overflow-hidden shadow-sm flex flex-col justify-between"
+      >
+        <div class="relative h-[260px] overflow-hidden bg-gradient-to-br from-[#2b0938] via-[#7a28ff] to-[#ff513d]">
+          <div
+            data-df-card-media
+            class="relative w-full h-full p-5 flex flex-col justify-between text-white transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+          >
+            <video
+              src="/media/videos/Glass_prism_splitting_laser_beam_20261017220851.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              class="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-[25%_25%] z-0 pointer-events-none"
+              onerror="this.style.display='none'"
+            />
+            <span class="relative z-10 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md text-[11px] font-mono w-fit border border-white/15">
+              FLOW-VIDEO-03 • 429×322 Loop
+            </span>
+            <div class="relative z-10 mt-auto w-fit px-3 py-1.5 rounded-lg bg-black/55 backdrop-blur-md border border-white/20 text-[11px] font-mono">
+              120fps WebGPU Raytracer
+            </div>
+          </div>
+        </div>
+        <div class="p-7 flex-1 flex flex-col justify-between">
+          <div>
+            <h3
+              class="font-black text-[#131313] mb-2"
+              style="font-size: 24px; line-height: 24px; letter-spacing: -0.96px;"
+            >
+              Introducing Spatial Shader Engine.
+            </h3>
+            <p class="text-[15px] leading-[1.4] text-[#505050] mb-5">
+              Compile real-time WebGPU glass physics, caustics, and interactive motion stages directly from natural language specs.
+            </p>
+          </div>
+          <a href="/design-system#prompts" class="inline-flex items-center gap-1.5 font-bold text-[14px] text-[#131313]">
+            <span>Copy FLOW-VIDEO-03 Prompt</span>
+            <span data-df-card-arrow>→</span>
+          </a>
+        </div>
+      </article>
+
+      <article
+        data-df-bento-card
+        class="lg:col-span-4 rounded-[24px] bg-white border border-black/[0.07] overflow-hidden shadow-sm flex flex-col justify-between"
+      >
+        <div class="relative h-[260px] overflow-hidden bg-gradient-to-br from-[#3b0905] via-[#f03823] to-[#ffbcb4]">
+          <div
+            data-df-card-media
+            class="relative w-full h-full p-5 flex flex-col justify-between text-white transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+          >
+            <img
+              src="/media/images/Gemini_Generated_Image_m3tbi4m3tbi4m3tb.png"
+              alt="Zero-Hallucination Repo Graph"
+              class="absolute inset-0 w-full h-full object-cover scale-[1.10] origin-[25%_25%] z-0 pointer-events-none"
+              onerror="this.style.display='none'"
+            />
+            <span class="relative z-10 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md text-[11px] font-mono w-fit border border-white/15">
+              NANO-IMG-08 • 429×322 Card
+            </span>
+            <div class="relative z-10 mt-auto w-fit px-3 py-1.5 rounded-lg bg-black/55 backdrop-blur-md border border-white/20 text-[11px] font-mono">
+              AST Dependency Graph
+            </div>
+          </div>
+        </div>
+        <div class="p-7 flex-1 flex flex-col justify-between">
+          <div>
+            <h3
+              class="font-black text-[#131313] mb-2"
+              style="font-size: 24px; line-height: 24px; letter-spacing: -0.96px;"
+            >
+              Reason across 100,000+ files instantly.
+            </h3>
+            <p class="text-[15px] leading-[1.4] text-[#505050] mb-5">
+              Structured AST indexing links every API contract, database schema, and UI component with deterministic citations.
+            </p>
+          </div>
+          <a href="/design-system#prompts" class="inline-flex items-center gap-1.5 font-bold text-[14px] text-[#131313]">
+            <span>Copy NANO-IMG-08 Prompt</span>
+            <span data-df-card-arrow>→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

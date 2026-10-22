@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="kx-crimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FA0F00" />
+      <stop offset="55%" stop-color="#FF5C00" />
+      <stop offset="100%" stop-color="#7A28FF" />
+    </linearGradient>
+    <linearGradient id="kx-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#FFB4A8" stop-opacity="0.35" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0B0B10" />
+  <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" stroke="url(#kx-crimson)" stroke-opacity="0.55" stroke-width="1.5" />
+  <!-- Outer Isometric Prism Wing -->
+  <path d="M18 14L36 32L18 50V14Z" fill="url(#kx-crimson)" />
+  <!-- Refracted Glass Counter-Prism -->
+  <path d="M46 14L28 32L46 50V37L37 32L46 27V14Z" fill="url(#kx-glass)" />
+  <!-- Core Laser Singularity Dot -->
+  <circle cx="32" cy="32" r="3.5" fill="#FFFFFF" />
+</svg>

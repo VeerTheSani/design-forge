@@ -1,0 +1,25 @@
+{
+  "name": "design-forge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "End-to-End Frontend Reverse-Engineering & Design System Compiler",
+  "scripts": {
+    "build": "tsc",
+    "extract": "tsc && node dist/index.js",
+    "extract:adobe": "tsc && node dist/index.js https://www.adobe.com --name adobe",
+    "clean:media": "npx tsx extractor/clean-media.ts",
+    "dev:showcase": "npm --prefix sites/adobe-showcase run dev",
+    "build:showcase": "npm --prefix sites/adobe-showcase run build"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.27",
+    "playwright-core": "^1.51.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

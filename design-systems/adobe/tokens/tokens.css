@@ -1,0 +1,77 @@
+/* ==========================================================================
+   DESIGN FORGE — Extracted Design Tokens (ADOBE)
+   Generated from live DOM & ComputedStyle inspection
+   ========================================================================== */
+
+:root {
+  /* Font Families — Plus Jakarta Sans (900 Black) & Inter first so missing local Adobe Clean never falls back to Arial */
+  --df-font-display: "Plus Jakarta Sans", "Adobe Clean Display Black", "Adobe Clean", "Inter", system-ui, sans-serif;
+  --df-font-sans: "Plus Jakarta Sans", "Adobe Clean", "Inter", system-ui, -apple-system, sans-serif;
+  --df-font-mono: "JetBrains Mono", monospace;
+
+  /* Surface & Canvas Colors */
+  --df-bg-canvas: rgb(255, 255, 255);
+  --df-bg-subtle: #f3f3f3;
+  --df-bg-dark-stage: #0b0b10;
+  --df-bg-dark-card: #131313;
+
+  /* Typography Colors */
+  --df-text-primary: #131313;
+  --df-text-secondary: #505050;
+  --df-text-on-dark: rgb(255, 255, 255);
+  --df-text-on-dark-muted: rgba(255, 255, 255, 0.76);
+
+  /* Brand & Interactive Accents (Swap these variables to re-skin for any new brand) */
+  --df-accent-primary: #FA0F00;
+  --df-accent-interactive: #3B63FB;
+  --df-accent-gradient: linear-gradient(108deg, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 98.86%);
+
+  /* Borders & Glassmorphism Physics */
+  --df-border-light: rgba(0, 0, 0, 0.08);
+  --df-border-dark: rgba(255, 255, 255, 0.12);
+  --df-border-hover: rgba(255, 255, 255, 0.28);
+  --df-glass-light: rgba(255, 255, 255, 0.92);
+  --df-glass-dark: rgba(19, 19, 19, 0.78);
+  --df-glass-pill: rgba(255, 255, 255, 0.14);
+  --df-backdrop-blur: blur(20px) saturate(180%);
+
+  /* Fluid Typography Scale */
+  --df-text-hero: clamp(2.75rem, 5.2vw, 5rem);
+  --df-lh-hero: 0.95;
+  --df-ls-hero: -0.04em;
+
+  --df-text-h1: clamp(2.25rem, 4vw, 3.5rem);
+  --df-lh-h1: 1.0;
+  --df-ls-h1: -0.03em;
+
+  --df-text-h2: clamp(1.5rem, 2.4vw, 2.15rem);
+  --df-lh-h2: 1.05;
+
+  --df-text-h3: 1.5rem;
+  --df-text-lead: 1.25rem;
+  --df-text-body: 1rem;
+  --df-text-eyebrow: 0.8125rem;
+
+  /* Spatial & Layout Rhythm */
+  --df-container-max: 1440px;
+  --df-bento-gap: 24px;
+  --df-section-py: clamp(4rem, 7vw, 6.5rem);
+
+  /* Border Radii */
+  --df-radius-pill: 9999px;
+  --df-radius-card-lg: 24px;
+  --df-radius-card-md: 16px;
+
+  /* Elevation & Shadows */
+  --df-shadow-ambient: rgba(255, 255, 255, 0.11) 0px 0px 0px 1px inset;
+  --df-shadow-hover: 0 24px 48px -12px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.16);
+  --df-shadow-glass: 0 16px 40px rgba(0, 0, 0, 0.22);
+
+  /* Motion Easing Tokens */
+  --df-ease-out-expo: cubic-bezier(0.42, 0, 0, 1);
+  --df-ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --df-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --df-duration-fast: 180ms;
+  --df-duration-normal: 350ms;
+  --df-duration-slow: 650ms;
+}

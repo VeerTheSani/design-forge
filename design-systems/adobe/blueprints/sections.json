@@ -1,0 +1,272 @@
+[
+  {
+    "id": "section-1-global-navigation",
+    "index": 1,
+    "archetype": "global-navigation",
+    "tag": "header",
+    "selectorHint": "header.global-navigation",
+    "boundingBox": {
+      "y": 0,
+      "width": 1425,
+      "height": 80
+    },
+    "layoutType": "grid",
+    "gridTemplateColumns": "repeat(5, minmax(0px, 1fr))",
+    "gap": "8px",
+    "padding": "0px 0px 0px 0px",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "headings": [
+      "Create quickly and easily with AI models.",
+      "Transform PDFs to insights, content, and action.",
+      "Craft at the highest level of creative.",
+      "Unify content, data and work with AI.",
+      "Students save big on the top tools.",
+      "Organizations",
+      "Industries",
+      "Acrobat for Business"
+    ],
+    "ctas": [],
+    "cards": [],
+    "screenshotFile": "reference-captures/sections/01-global-navigation.png"
+  },
+  {
+    "id": "section-2-hero-stage",
+    "index": 2,
+    "archetype": "hero-stage",
+    "tag": "div",
+    "selectorHint": "div.section.parallax-move-up-fast",
+    "boundingBox": {
+      "y": 0,
+      "width": 1425,
+      "height": 900
+    },
+    "layoutType": "block",
+    "gridTemplateColumns": "none",
+    "gap": "normal",
+    "padding": "0px 0px 0px 0px",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "headings": [
+      "Adobe homepage",
+      "Create at the highest level.",
+      "All the best models, all in one place.",
+      "Get work done. Faster.",
+      "Orchestrate customer experiences with AI.",
+      "Students and teachers.",
+      "Create at the highest level.",
+      "All the best models, all in one place."
+    ],
+    "ctas": [
+      {
+        "text": "Free trial",
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "999px",
+        "padding": "0px 24px"
+      },
+      {
+        "text": "Create with Firefly",
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "999px",
+        "padding": "0px 24px"
+      },
+      {
+        "text": "It starts with Adobe",
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "999px",
+        "padding": "0px 24px"
+      },
+      {
+        "text": "Free trial",
+        "bg": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "radius": "999px",
+        "padding": "0px 24px"
+      }
+    ],
+    "cards": [],
+    "screenshotFile": "reference-captures/sections/02-hero-stage.png"
+  },
+  {
+    "id": "section-3-bento-grid",
+    "index": 3,
+    "archetype": "bento-grid",
+    "tag": "div",
+    "selectorHint": "div.section",
+    "boundingBox": {
+      "y": 868,
+      "width": 1425,
+      "height": 866
+    },
+    "layoutType": "block",
+    "gridTemplateColumns": "none",
+    "gap": "normal",
+    "padding": "0px 0px 0px 0px",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "headings": [
+      "Everything you need to make anything.",
+      "Create with the top tools.",
+      "Generate stunning content easily.",
+      "Do it all in less time.",
+      "Orchestrate customer experiences.",
+      "Students and teachers save big."
+    ],
+    "ctas": [],
+    "cards": [
+      {
+        "index": 0,
+        "widthPx": 249,
+        "heightPx": 583,
+        "aspectRatio": "25:58",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgb(243, 243, 243)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": true,
+        "hasImage": true,
+        "headingSample": "Create with the top tools.",
+        "ctaSample": ""
+      },
+      {
+        "index": 1,
+        "widthPx": 249,
+        "heightPx": 583,
+        "aspectRatio": "25:58",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgb(243, 243, 243)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": true,
+        "hasImage": true,
+        "headingSample": "Generate stunning content easily.",
+        "ctaSample": ""
+      },
+      {
+        "index": 2,
+        "widthPx": 249,
+        "heightPx": 583,
+        "aspectRatio": "25:58",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgb(243, 243, 243)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": true,
+        "hasImage": true,
+        "headingSample": "Do it all in less time.",
+        "ctaSample": ""
+      },
+      {
+        "index": 3,
+        "widthPx": 249,
+        "heightPx": 583,
+        "aspectRatio": "25:58",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgb(243, 243, 243)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": true,
+        "hasImage": true,
+        "headingSample": "Orchestrate customer experiences.",
+        "ctaSample": ""
+      },
+      {
+        "index": 4,
+        "widthPx": 249,
+        "heightPx": 583,
+        "aspectRatio": "25:58",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgb(243, 243, 243)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": true,
+        "hasImage": true,
+        "headingSample": "Students and teachers save big.",
+        "ctaSample": ""
+      }
+    ],
+    "screenshotFile": "reference-captures/sections/03-bento-grid.png"
+  },
+  {
+    "id": "section-4-bento-grid",
+    "index": 4,
+    "archetype": "bento-grid",
+    "tag": "div",
+    "selectorHint": "div.section",
+    "boundingBox": {
+      "y": 1734,
+      "width": 1425,
+      "height": 1535
+    },
+    "layoutType": "block",
+    "gridTemplateColumns": "none",
+    "gap": "normal",
+    "padding": "0px 0px 0px 0px",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "backgroundImage": "none",
+    "headings": [
+      "Explore what's new.",
+      "Turn AI signals into business impact with Adobe Brand Visibility.",
+      "Change only what you want.",
+      "Introducing Color Mode.​",
+      "Work smarter than ever with documents."
+    ],
+    "ctas": [],
+    "cards": [
+      {
+        "index": 0,
+        "widthPx": 390,
+        "heightPx": 439,
+        "aspectRatio": "39:44",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "borderRadius": "0px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": false,
+        "hasImage": true,
+        "headingSample": "Change only what you want.",
+        "ctaSample": "Try AI Assistant"
+      },
+      {
+        "index": 1,
+        "widthPx": 390,
+        "heightPx": 439,
+        "aspectRatio": "39:44",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "borderRadius": "0px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": false,
+        "hasImage": true,
+        "headingSample": "Introducing Color Mode.​",
+        "ctaSample": "Explore Premiere"
+      },
+      {
+        "index": 2,
+        "widthPx": 390,
+        "heightPx": 439,
+        "aspectRatio": "39:44",
+        "colSpanHint": "col-span-3 (1/4 compact)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "borderRadius": "0px",
+        "padding": "0px 0px 0px 0px",
+        "hasVideo": false,
+        "hasImage": true,
+        "headingSample": "Work smarter than ever with documents.",
+        "ctaSample": "Explore Acrobat"
+      }
+    ],
+    "screenshotFile": "reference-captures/sections/04-bento-grid.png"
+  }
+]

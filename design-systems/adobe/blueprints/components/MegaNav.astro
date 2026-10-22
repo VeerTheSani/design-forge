@@ -1,0 +1,117 @@
+---
+/**
+ * DESIGN FORGE BLUEPRINT: MegaNav.astro
+ * Brand Instance: KINETIX AI (Autonomous Neural Compute & Spatial Engineering Cloud)
+ * Extracted from Adobe S2A Floating Glass Global Navigation:
+ * - Adaptive floating pill bar on scroll (`border-radius: 0 0 24px 24px`, `backdrop-filter: blur(20px)`)
+ * - Custom SVG Vector Prism Logo (`/logo-kinetix.svg`)
+ */
+interface Props {
+  brandName?: string;
+  navItems?: { label: string; badge?: string; href?: string }[];
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  brandName = 'KINETIX',
+  navItems = [
+    { label: 'Neural Engine', badge: 'KX-4', href: '#hero' },
+    { label: 'Agent Clusters', href: '#carousel' },
+    { label: 'Spatial Telemetry', badge: 'New', href: '#bento' },
+    { label: 'Enterprise Cloud', href: '#bento' },
+    { label: 'Benchmarks', href: '/design-system' },
+    { label: 'Pricing', href: '#bento' },
+  ],
+  ctaLabel = 'Deploy Cluster',
+  ctaHref = '#bento',
+} = Astro.props;
+---
+
+<header
+  data-df-gnav
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.42,0,0,1)] px-4 sm:px-8"
+>
+  <div
+    data-df-gnav-inner
+    class="max-w-[1440px] mx-auto flex items-center justify-between h-[72px] px-6 rounded-b-[24px] transition-all duration-300 ease-[cubic-bezier(0.42,0,0,1)] text-white"
+  >
+    <!-- Brand Mark + Navigation Links -->
+    <div class="flex items-center gap-8">
+      <a href="/" class="flex items-center gap-3 font-black text-xl tracking-[-0.04em] group">
+        <img
+          src="/logo-kinetix.svg"
+          alt="KINETIX AI Logo"
+          class="w-8 h-8 rounded-[9px] shadow-md transition-transform duration-200 group-hover:scale-105"
+        />
+        <div class="flex items-center gap-1.5">
+          <span>{brandName}</span>
+          <span class="text-[10px] font-mono uppercase tracking-widest px-1.5 py-0.5 rounded bg-[#FA0F00] text-white font-bold">
+            AI
+          </span>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href || '#'}
+              class="px-3.5 py-2 rounded-full text-[14px] font-semibold tracking-[-0.01em] opacity-90 hover:opacity-100 hover:bg-white/10 transition-all duration-150 flex items-center gap-1.5"
+            >
+              <span>{item.label}</span>
+              {item.badge && (
+                <span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/15 font-bold">
+                  {item.badge}
+                </span>
+              )}
+              <svg class="w-3.5 h-3.5 opacity-70" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <!-- Right Actions: Design System Inspector + Primary Pill CTA -->
+    <div class="flex items-center gap-3">
+      <a
+        href="/design-system#prompts"
+        class="px-4 py-2 rounded-full text-[13px] font-bold tracking-[-0.01em] border border-white/25 bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all duration-200"
+      >
+         Prompts & DNA
+      </a>
+      <a
+        href={ctaHref}
+        class="px-5 py-2.5 rounded-full text-[14px] font-bold bg-white text-[#131313] hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 shadow-sm"
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const gnavInner = document.querySelector<HTMLElement>('[data-df-gnav-inner]');
+  const updateNav = () => {
+    if (!gnavInner) return;
+    if (window.scrollY > 48) {
+      gnavInner.style.backgroundColor = 'rgba(255, 255, 255, 0.92)';
+      gnavInner.style.backdropFilter = 'blur(20px) saturate(180%)';
+      gnavInner.style.color = '#131313';
+      gnavInner.style.boxShadow = '0 14px 36px -8px rgba(0, 0, 0, 0.14)';
+    } else {
+      gnavInner.style.backgroundColor = 'transparent';
+      gnavInner.style.backdropFilter = 'blur(0px)';
+      gnavInner.style.color = '#ffffff';
+      gnavInner.style.boxShadow = 'none';
+    }
+  };
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>

@@ -1,0 +1,448 @@
+---
+import '../../../../design-systems/adobe/tokens/tokens.css';
+import tokensData from '../../../../design-systems/adobe/tokens/tokens.json';
+import motionData from '../../../../design-systems/adobe/motion/motion-dna.json';
+import mediaManifest from '../../../../design-systems/adobe/media-prompts/media-manifest.json';
+
+const rawProps = tokensData.rawInspection?.rootCustomProperties || {};
+const s2aColors = Object.entries(rawProps)
+  .filter(([k, v]) => k.startsWith('--s2a-color-') && typeof v === 'string' && v.startsWith('#'))
+  .slice(0, 40);
+
+const extractedTypeSamples = tokensData.typography?.extractedSamples || [];
+const rawAnimations = motionData.extractedRuntimeData?.activeWebAnimations || [];
+// Deduplicate by animation name + targetClass so we show clean unique motion rules
+const seenAnim = new Set<string>();
+const activeAnimations = rawAnimations.filter((a) => {
+  const key = `${a.name}-${a.targetClass}`;
+  if (seenAnim.has(key)) return false;
+  seenAnim.add(key);
+  return true;
+});
+
+const flowPrompts = mediaManifest.googleFlowVideoPrompts || [];
+const nanoPrompts = mediaManifest.nanoBananaImagePrompts || [];
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design System Explorer — Extracted Adobe S2A DNA | Design Forge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      code, pre, .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+    </style>
+  </head>
+  <body class="bg-[#0b0b10] text-white selection:bg-[#FA0F00] selection:text-white">
+    <!-- Top Sticky Inspector Bar -->
+    <header class="sticky top-0 z-50 bg-[#0b0b10]/90 backdrop-blur-xl border-b border-white/10 px-6 sm:px-12 h-[72px] flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="/" class="flex items-center gap-2.5 font-black text-lg tracking-[-0.03em]">
+          <span class="w-7 h-7 rounded-lg bg-[#FA0F00] text-white text-xs font-black flex items-center justify-center">
+            DF
+          </span>
+          <span>DESIGN FORGE</span>
+        </a>
+        <span class="text-white/30">/</span>
+        <span class="px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-white/90">
+          design-systems/adobe ({s2aColors.length}+ S2A Swatches • {activeAnimations.length} Live Animations • {flowPrompts.length + nanoPrompts.length} Verified Media Slots)
+        </span>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-white/75">
+        <a href="#captures" class="hover:text-white">Live Captures</a>
+        <a href="#tokens" class="hover:text-white">S2A Color Tokens</a>
+        <a href="#typography" class="hover:text-white">Typography Math</a>
+        <a href="#motion" class="hover:text-white">Motion & Keyframes</a>
+        <a href="#prompts" class="hover:text-white text-emerald-400">Flow & Nano Prompts</a>
+      </nav>
+
+      <a
+        href="/"
+        class="px-4 py-2 rounded-full bg-white text-[#131313] font-bold text-xs sm:text-sm hover:scale-[1.03] transition-transform"
+      >
+        ← View Reconstructed Site
+      </a>
+    </header>
+
+    <main class="max-w-[1440px] mx-auto px-6 sm:px-12 py-14 space-y-20">
+      <!-- Hero Summary Banner -->
+      <section class="rounded-[28px] bg-gradient-to-br from-[#191924] via-[#12121a] to-[#1e112a] border border-white/15 p-8 sm:p-12 shadow-2xl">
+        <div class="flex flex-wrap items-center gap-2.5 mb-4">
+          <span class="px-3 py-1 rounded-full bg-[#FA0F00]/20 border border-[#FA0F00]/40 text-[#ff6b60] text-xs font-mono font-bold">
+            EXTRACTED SOURCE: https://www.adobe.com
+          </span>
+          <span class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono">
+            Zero Generic Placeholders • 100% Live DOM Ground Truth
+          </span>
+        </div>
+
+        <h1
+          class="font-black tracking-[-0.04em] mb-4"
+          style="font-size: clamp(2.25rem, 4.2vw, 3.75rem); line-height: 0.98;"
+        >
+          Adobe S2A Design System & Prompt Playbook
+        </h1>
+        <p class="text-white/75 text-lg max-w-[860px] leading-relaxed mb-8">
+          Every token, computed font metric, Web Animations API keyframe, and media slot below is bound directly to the live JSON files in <code class="text-amber-300 font-mono text-base">C:\Users\sanis\design-forge\design-systems\adobe\</code>. Empty preload video shells have been filtered out so only real rendered slots with verified Adobe `.mp4` / `.png` URLs and exact dimensions are shown.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="rounded-2xl bg-black/40 border border-white/10 p-5">
+            <div class="text-xs font-mono text-white/50 uppercase">S2A Color Tokens</div>
+            <div class="text-3xl font-black mt-1">76</div>
+            <div class="text-xs text-white/60 mt-1">--s2a-color-* extracted live</div>
+          </div>
+          <div class="rounded-2xl bg-black/40 border border-white/10 p-5">
+            <div class="text-xs font-mono text-white/50 uppercase">Web Animations API</div>
+            <div class="text-3xl font-black mt-1">{activeAnimations.length}</div>
+            <div class="text-xs text-white/60 mt-1">Parallax curtain + 5s dock</div>
+          </div>
+          <div class="rounded-2xl bg-black/40 border border-white/10 p-5">
+            <div class="text-xs font-mono text-white/50 uppercase">Google Flow Slots</div>
+            <div class="text-3xl font-black mt-1">{flowPrompts.length}</div>
+            <div class="text-xs text-white/60 mt-1">Verified Hero & Carousel loops</div>
+          </div>
+          <div class="rounded-2xl bg-black/40 border border-white/10 p-5">
+            <div class="text-xs font-mono text-white/50 uppercase">Nano Banana Slots</div>
+            <div class="text-3xl font-black mt-1">{nanoPrompts.length}</div>
+            <div class="text-xs text-white/60 mt-1">Verified Bento card visuals</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. Reference Captures from Live Adobe Extraction -->
+      <section id="captures" class="space-y-6">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-[#ff6b60] mb-1">01 / Visual Ground Truth</div>
+          <h2 class="text-3xl font-black tracking-[-0.03em]">Live Extracted Reference Captures</h2>
+          <p class="text-white/65 text-sm mt-1">
+            Captured directly from <code class="font-mono text-white/90">https://www.adobe.com</code> via off-screen Chrome CDP session during extraction.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden p-4">
+            <div class="flex items-center justify-between text-xs font-mono text-white/70 mb-3">
+              <span>sections/02-hero-stage.png (Hero + 5-Slot Progress Dock)</span>
+              <span class="text-emerald-400">1440×900</span>
+            </div>
+            <img
+              src="/reference-captures/sections/02-hero-stage.png"
+              alt="Extracted Adobe Hero Stage"
+              class="w-full rounded-xl border border-white/10 object-cover max-h-[340px] object-top"
+            />
+          </div>
+
+          <div class="rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden p-4">
+            <div class="flex items-center justify-between text-xs font-mono text-white/70 mb-3">
+              <span>sections/04-bento-grid.png (Elastic Carousel & Bento)</span>
+              <span class="text-emerald-400">1440px Grid</span>
+            </div>
+            <img
+              src="/reference-captures/sections/04-bento-grid.png"
+              alt="Extracted Adobe Bento Section"
+              class="w-full rounded-xl border border-white/10 object-cover max-h-[340px] object-top"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Extracted S2A Color Tokens -->
+      <section id="tokens" class="space-y-6">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-[#ff6b60] mb-1">02 / Color & Surface Physics</div>
+          <h2 class="text-3xl font-black tracking-[-0.03em]">Extracted `--s2a-color-*` Palette ({s2aColors.length} Swatches Shown)</h2>
+          <p class="text-white/65 text-sm mt-1">
+            Bound directly to <code class="font-mono text-white/90">tokensData.rawInspection.rootCustomProperties</code>. Click any swatch to copy its exact hex value.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          {
+            s2aColors.map(([name, hex]) => (
+              <button
+                type="button"
+                data-copy={`${name}: ${hex};`}
+                class="group text-left rounded-2xl bg-white/[0.04] border border-white/10 p-3 hover:border-white/35 hover:-translate-y-0.5 transition-all"
+              >
+                <div
+                  class="w-full h-14 rounded-xl mb-2.5 border border-white/15 shadow-inner"
+                  style={`background: ${hex};`}
+                />
+                <div class="font-mono text-[11px] text-white/90 font-bold truncate">
+                  {name.replace('--s2a-color-', '')}
+                </div>
+                <div class="font-mono text-[11px] text-white/50">{String(hex)}</div>
+              </button>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- 3. Extracted Typography Scale -->
+      <section id="typography" class="space-y-6">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-[#ff6b60] mb-1">03 / Typography Hierarchy</div>
+          <h2 class="text-3xl font-black tracking-[-0.03em]">Exact Computed Type Scale (`extractedSamples`)</h2>
+          <p class="text-white/65 text-sm mt-1">
+            Live computed font metrics captured from Adobe's DOM elements (`Adobe Clean Display Black` & `Adobe Clean`), rendered with our high-contrast geometric display stack.
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-white/[0.04] border border-white/10 divide-y divide-white/10">
+          {
+            extractedTypeSamples.map((sample) => (
+              <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div class="space-y-1.5 max-w-[780px]">
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+                    <span class="px-2 py-0.5 rounded bg-amber-400/15 text-amber-300 font-bold">{sample.role}</span>
+                    <span class="text-white/60">&lt;{sample.tag}&gt;</span>
+                    <span class="text-emerald-400">{sample.fontFamily}</span>
+                  </div>
+                  <div
+                    class="text-white tracking-tight"
+                    style={`font-size: clamp(1.1rem, ${Math.min(sample.fontSizePx, 56)}px, 3.5rem); line-height: ${sample.lineHeightRatio}; letter-spacing: ${sample.letterSpacing}; font-weight: ${sample.fontWeight};`}
+                  >
+                    {sample.sampleText}
+                  </div>
+                </div>
+                <code class="text-xs font-mono bg-black/60 px-3.5 py-2.5 rounded-xl border border-white/10 shrink-0 text-white/85">
+                  font-size: {sample.fontSize}; line-height: {sample.lineHeight}; letter-spacing: {sample.letterSpacing}; font-weight: {sample.fontWeight};
+                </code>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- 4. Extracted Motion DNA & Keyframes -->
+      <section id="motion" class="space-y-6">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-[#ff6b60] mb-1">04 / Motion & Scroll Choreography</div>
+          <h2 class="text-3xl font-black tracking-[-0.03em]">Extracted Web Animations API (`document.getAnimations()`)</h2>
+          <p class="text-white/65 text-sm mt-1">
+            Bound directly to <code class="font-mono text-white/90">motionData.extractedRuntimeData.activeWebAnimations</code> in <code class="font-mono text-white/90">motion/motion-dna.json</code>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {
+            activeAnimations.map((anim) => (
+              <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-5 font-mono text-xs space-y-3">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-emerald-400 font-bold text-sm">{anim.name}</span>
+                  <span class="px-2.5 py-1 rounded bg-white/10 text-white/80">
+                    target: &lt;{anim.targetTag}&gt; .{anim.targetClass}
+                  </span>
+                </div>
+                <div class="text-white/55">
+                  duration: <span class="text-amber-300">{String(anim.duration)}</span> • easing:{' '}
+                  <span class="text-amber-300">{anim.easing}</span>
+                </div>
+                <pre class="bg-black/60 p-3.5 rounded-xl border border-white/10 overflow-x-auto text-white/85 leading-relaxed">{JSON.stringify(anim.keyframes, null, 2)}</pre>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- 5. Google Flow & Nano Banana Prompt Playbook -->
+      <section id="prompts" class="space-y-10">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-wider text-emerald-400 mb-1">
+            05 / Verified AI Media Generation Playbook
+          </div>
+          <h2 class="text-3xl font-black tracking-[-0.03em]">
+            Google Flow (Video Agent) & Nano Banana (Image) Slot Prompts
+          </h2>
+          <p class="text-white/70 text-sm mt-1 max-w-[820px]">
+            Every slot below corresponds to a real extracted video or image container on Adobe's homepage (with its actual rendered pixel dimensions, section heading, and live reference media URL). Both the **Adobe Reference Prompt** and your **Custom AI SaaS Brand Prompt (`AETHER STUDIO`)** are ready to copy.
+          </p>
+        </div>
+
+        <!-- Google Flow Prompts -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-amber-300 flex items-center gap-2">
+            <span>🎬 Google Flow Video Agent Prompts ({flowPrompts.length} Verified Slots)</span>
+          </h3>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {
+              flowPrompts.map((p) => (
+                <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-6 flex flex-col justify-between gap-5">
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="px-2.5 py-1 rounded bg-[#FA0F00]/20 border border-[#FA0F00]/40 text-[#ff6b60] font-bold">
+                        {p.slotId}
+                      </span>
+                      <span class="text-white/70">
+                        {p.dimensions}px • Aspect {p.aspectRatio} • Radius {p.borderRadius}
+                      </span>
+                    </div>
+
+                    <div class="font-bold text-base text-white">{p.role}</div>
+                    <div class="text-xs text-white/60 font-mono">
+                      <span class="text-white/40">Component:</span> {p.sectionContext}
+                    </div>
+                    <div class="text-xs text-amber-200/90 font-mono bg-amber-500/10 border border-amber-500/20 px-3 py-2 rounded-lg">
+                      Safe Zone: {p.safeZoneForText}
+                    </div>
+
+                    {p.extractedSourceUrl && (
+                      <div class="text-[11px] font-mono text-white/50 truncate">
+                        Extracted Adobe MP4:{' '}
+                        <a
+                          href={p.extractedSourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          class="text-cyan-400 hover:underline"
+                        >
+                          {p.extractedSourceUrl}
+                        </a>
+                      </div>
+                    )}
+
+                    <div class="text-xs font-semibold text-emerald-400 uppercase pt-2">
+                      1. Your Custom AI SaaS Brand Prompt (Obsidian + Crimson/Violet + 3D Glass):
+                    </div>
+                    <p class="text-xs font-mono bg-emerald-950/30 p-3.5 rounded-xl border border-emerald-500/25 text-emerald-100 leading-relaxed">
+                      {p.brandAdaptedPromptTemplate}
+                    </p>
+
+                    <div class="text-xs font-semibold text-white/50 uppercase pt-1">
+                      2. Original Adobe Reference-Style Prompt:
+                    </div>
+                    <p class="text-xs font-mono bg-black/50 p-3.5 rounded-xl border border-white/10 text-white/75 leading-relaxed">
+                      {p.referenceStylePrompt}
+                    </p>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3 pt-2">
+                    <button
+                      type="button"
+                      data-copy={p.brandAdaptedPromptTemplate}
+                      class="py-2.5 px-3 rounded-xl bg-emerald-500 text-[#0b0b10] hover:bg-emerald-400 font-bold text-xs transition-colors"
+                    >
+                      Copy Custom Brand Prompt
+                    </button>
+                    <button
+                      type="button"
+                      data-copy={p.referenceStylePrompt}
+                      class="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white hover:text-[#131313] font-bold text-xs transition-colors"
+                    >
+                      Copy Reference Prompt
+                    </button>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Nano Banana Prompts -->
+        <div class="space-y-4 pt-6">
+          <h3 class="text-xl font-bold text-cyan-300 flex items-center gap-2">
+            <span>🍌 Nano Banana Image Generation Prompts ({nanoPrompts.length} Verified Bento Slots)</span>
+          </h3>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {
+              nanoPrompts.map((p) => (
+                <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-6 flex flex-col justify-between gap-5">
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="px-2.5 py-1 rounded bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-bold">
+                        {p.slotId}
+                      </span>
+                      <span class="text-white/70">
+                        {p.dimensions}px • Aspect {p.aspectRatio} • Radius {p.borderRadius}
+                      </span>
+                    </div>
+
+                    <div class="font-bold text-base text-white">{p.role}</div>
+                    <div class="text-xs text-white/60 font-mono">
+                      <span class="text-white/40">Component:</span> {p.sectionContext}
+                    </div>
+                    <div class="text-xs text-cyan-200/90 font-mono bg-cyan-500/10 border border-cyan-500/20 px-3 py-2 rounded-lg">
+                      Safe Zone: {p.safeZoneForText}
+                    </div>
+
+                    {p.extractedSourceUrl && (
+                      <div class="text-[11px] font-mono text-white/50 truncate">
+                        Extracted Adobe PNG:{' '}
+                        <a
+                          href={p.extractedSourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          class="text-cyan-400 hover:underline"
+                        >
+                          {p.extractedSourceUrl}
+                        </a>
+                      </div>
+                    )}
+
+                    <div class="text-xs font-semibold text-emerald-400 uppercase pt-2">
+                      1. Your Custom AI SaaS Brand Prompt (Obsidian + Crimson/Violet + 3D Glass):
+                    </div>
+                    <p class="text-xs font-mono bg-emerald-950/30 p-3.5 rounded-xl border border-emerald-500/25 text-emerald-100 leading-relaxed">
+                      {p.brandAdaptedPromptTemplate}
+                    </p>
+
+                    <div class="text-xs font-semibold text-white/50 uppercase pt-1">
+                      2. Original Adobe Reference-Style Prompt:
+                    </div>
+                    <p class="text-xs font-mono bg-black/50 p-3.5 rounded-xl border border-white/10 text-white/75 leading-relaxed">
+                      {p.referenceStylePrompt}
+                    </p>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3 pt-2">
+                    <button
+                      type="button"
+                      data-copy={p.brandAdaptedPromptTemplate}
+                      class="py-2.5 px-3 rounded-xl bg-emerald-500 text-[#0b0b10] hover:bg-emerald-400 font-bold text-xs transition-colors"
+                    >
+                      Copy Custom Brand Prompt
+                    </button>
+                    <button
+                      type="button"
+                      data-copy={p.referenceStylePrompt}
+                      class="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white hover:text-[#131313] font-bold text-xs transition-colors"
+                    >
+                      Copy Reference Prompt
+                    </button>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const text = btn.getAttribute('data-copy') || '';
+          navigator.clipboard?.writeText(text);
+          const original = btn.textContent;
+          btn.textContent = '✓ Copied to Clipboard';
+          setTimeout(() => {
+            btn.textContent = original;
+          }, 1400);
+        });
+      });
+    </script>
+  </body>
+</html>

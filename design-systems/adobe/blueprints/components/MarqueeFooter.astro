@@ -1,0 +1,74 @@
+---
+/**
+ * DESIGN FORGE BLUEPRINT: MarqueeFooter.astro
+ * Brand Instance: KINETIX AI (Powered by Design Forge — Adobe S2A DNA)
+ */
+interface Props {
+  brandName?: string;
+}
+
+const { brandName = 'KINETIX AI' } = Astro.props;
+---
+
+<footer class="bg-[#131313] text-white pt-20 pb-14 px-6 sm:px-12 border-t border-white/10">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-10 pb-16 border-b border-white/10">
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="/logo-kinetix.svg" alt="KINETIX AI Logo" class="w-7 h-7 rounded-[8px]" />
+          <span class="font-black text-lg tracking-[-0.03em]">{brandName}</span>
+        </div>
+        <p class="text-[13px] text-white/60 leading-relaxed">
+          Autonomous Neural Compute & Spatial Engineering Cloud. Built on the reverse-engineered Adobe S2A design system, token scale, and GSAP + Lenis choreography.
+        </p>
+      </div>
+
+      <div>
+        <div class="text-[12px] font-bold uppercase tracking-wider text-white/50 mb-4">KINETIX Platform</div>
+        <ul class="space-y-2.5 text-[13px] text-white/80">
+          <li><a href="#hero" class="hover:text-white">KX-4 Neural Router</a></li>
+          <li><a href="#hero" class="hover:text-white">Spatial Shader Studio</a></li>
+          <li><a href="#carousel" class="hover:text-white">Autonomous Code Swarms</a></li>
+          <li><a href="#bento" class="hover:text-white">Sovereign Enterprise VPC</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-[12px] font-bold uppercase tracking-wider text-white/50 mb-4">Extracted Motion DNA</div>
+        <ul class="space-y-2.5 text-[13px] text-white/80">
+          <li><a href="/design-system#motion" class="hover:text-white">5000ms Dock Progress</a></li>
+          <li><a href="/design-system#motion" class="hover:text-white">Parallax Curtain (-315px)</a></li>
+          <li><a href="/design-system#motion" class="hover:text-white">Elastic Carousel Shrink</a></li>
+          <li><a href="/design-system#motion" class="hover:text-white">cubic-bezier(0.42, 0, 0, 1)</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-[12px] font-bold uppercase tracking-wider text-white/50 mb-4">AI Media Prompts</div>
+        <ul class="space-y-2.5 text-[13px] text-white/80">
+          <li><a href="/design-system#prompts" class="hover:text-white">Google Flow Video Prompts</a></li>
+          <li><a href="/design-system#prompts" class="hover:text-white">Nano Banana Image Prompts</a></li>
+          <li><a href="/design-system#prompts" class="hover:text-white">Drop-in /public/media/ Slots</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-[12px] font-bold uppercase tracking-wider text-white/50 mb-4">Design System Specs</div>
+        <ul class="space-y-2.5 text-[13px] text-white/80 font-mono">
+          <li><a href="/design-system#tokens" class="hover:text-white">76 S2A CSS Tokens</a></li>
+          <li><a href="/design-system#typography" class="hover:text-white">80px Display Scale</a></li>
+          <li><a href="/design-system#motion" class="hover:text-white">Web Animations API</a></li>
+          <li><a href="/design-system#prompts" class="hover:text-white">media-manifest.json</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/50">
+      <div>KINETIX AI Flagship Showcase • Powered by Design Forge (Astro + GSAP + Lenis + Tailwind CSS)</div>
+      <div class="flex items-center gap-6">
+        <a href="/" class="hover:text-white">KINETIX Homepage</a>
+        <a href="/design-system" class="hover:text-white">Interactive Design System & Prompt Explorer</a>
+      </div>
+    </div>
+  </div>
+</footer>
