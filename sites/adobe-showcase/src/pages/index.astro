@@ -5,10 +5,11 @@ import HeroStage from '../../../../design-systems/adobe/blueprints/components/He
 import ElasticCarousel from '../../../../design-systems/adobe/blueprints/components/ElasticCarousel.astro';
 import BentoShowcase from '../../../../design-systems/adobe/blueprints/components/BentoShowcase.astro';
 import MarqueeFooter from '../../../../design-systems/adobe/blueprints/components/MarqueeFooter.astro';
+import SyncController from '../../../../design-systems/adobe/blueprints/components/SyncController.astro';
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth antialiased">
+<html lang="en" class="antialiased" data-df-font-preset="s2a-tight" data-df-color-preset="crimson">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,11 +18,11 @@ import MarqueeFooter from '../../../../design-systems/adobe/blueprints/component
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Syne:wght@700;800&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-[#0b0b10] text-[#131313] font-sans overflow-x-hidden selection:bg-[#FA0F00] selection:text-white">
+  <body class="bg-[#0b0b10] text-[#131313] overflow-x-hidden selection:bg-[#FA0F00] selection:text-white">
     <!-- 1. Extracted Floating Glassmorphic Mega-Navigation -->
     <MegaNav />
 
@@ -39,18 +40,15 @@ import MarqueeFooter from '../../../../design-systems/adobe/blueprints/component
       <section class="bg-white py-20 px-6 sm:px-12 border-t border-black/[0.06]">
         <div class="max-w-[1440px] mx-auto rounded-[28px] bg-gradient-to-r from-[#131313] via-[#1c1433] to-[#0e1843] text-white p-10 sm:p-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 shadow-2xl">
           <div class="max-w-[700px]">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider mb-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 df-type-eyebrow mb-4">
               <img src="/logo-kinetix.svg" alt="" class="w-4 h-4 rounded-sm" />
               <span>KINETIX AI • Hot-Swappable Google Flow & Nano Banana Slots</span>
             </div>
-            <h2
-              class="font-black tracking-[-0.03em] mb-3"
-              style="font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.02;"
-            >
+            <h2 class="df-type-h2 text-white mb-3">
               Drop your Google Flow & Nano Banana renders straight into <code class="text-[#ff6b60] font-mono text-[0.85em]">/public/media/</code>
             </h2>
-            <p class="text-[17px] text-white/80 leading-relaxed">
-              Every hero stage, 4:5 elastic card, and 12-column Bento slot on this page automatically detects and mounts your generated <code class="font-mono text-white">FLOW-VIDEO-01..03.mp4</code> and <code class="font-mono text-white">NANO-IMG-01..08.png</code> files with zero code edits required.
+            <p class="df-type-body text-white/80">
+              Every hero stage, 4:5 elastic card, and 12-column Bento slot on this page automatically detects and mounts your generated <code class="font-mono text-white">FLOW-VIDEO-01..04.mp4</code> and <code class="font-mono text-white">NANO-IMG-01..08.png</code> files with zero code edits required.
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-4 shrink-0">
@@ -73,6 +71,9 @@ import MarqueeFooter from '../../../../design-systems/adobe/blueprints/component
 
     <!-- 6. Extracted Multi-Column Architectural Footer -->
     <MarqueeFooter />
+
+    <!-- 7. Live 4-Pillar Design System Sync Dock (Typography + Motion + Color) -->
+    <SyncController />
 
     <script>
       import { bootDesignSystemMotion } from '../../../../design-systems/adobe/motion/gsap-choreography';

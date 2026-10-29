@@ -1,77 +1,341 @@
 /* ==========================================================================
-   DESIGN FORGE — Extracted Design Tokens (ADOBE)
-   Generated from live DOM & ComputedStyle inspection
+   DESIGN FORGE — Unified 4-Pillar Design System (ADOBE S2A + KINETIX AI)
+   Pillars:
+   1. Typography System (Optical Display Hierarchy + Font Preset Switcher)
+   2. Color & Surface System (76 Extracted S2A Tokens + Live Brand Themes)
+   3. Motion & Physics System (Lenis + Web Animations API + Custom Bezier Tokens)
+   4. Spatial Rhythm & Elevation System
    ========================================================================== */
 
 :root {
-  /* Font Families — Plus Jakarta Sans (900 Black) & Inter first so missing local Adobe Clean never falls back to Arial */
-  --df-font-display: "Plus Jakarta Sans", "Adobe Clean Display Black", "Adobe Clean", "Inter", system-ui, sans-serif;
-  --df-font-sans: "Plus Jakarta Sans", "Adobe Clean", "Inter", system-ui, -apple-system, sans-serif;
-  --df-font-mono: "JetBrains Mono", monospace;
+  /* ========================================================================
+     1. TYPOGRAPHY SYSTEM (True 900 Display Black + Optical Hierarchy)
+     ======================================================================== */
+  --df-font-display: "Inter Tight", "Plus Jakarta Sans", "Adobe Clean Display Black", system-ui, -apple-system, sans-serif;
+  --df-font-sans: "Plus Jakarta Sans", "Inter", "Adobe Clean", system-ui, -apple-system, sans-serif;
+  --df-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* Surface & Canvas Colors */
-  --df-bg-canvas: rgb(255, 255, 255);
+  /* Fluid Optical Display Scale (Extracted from Adobe S2A 80px / 56px / 24px ratios) */
+  --df-text-hero: clamp(3rem, 5.25vw, 5.05rem);
+  --df-lh-hero: 0.94;
+  --df-ls-hero: -0.042em;
+  --df-weight-hero: 900;
+
+  --df-text-h1: clamp(2.35rem, 4.1vw, 3.6rem);
+  --df-lh-h1: 0.97;
+  --df-ls-h1: -0.036em;
+  --df-weight-h1: 900;
+
+  --df-text-h2: clamp(1.75rem, 2.5vw, 2.4rem);
+  --df-lh-h2: 1.03;
+  --df-ls-h2: -0.035em;
+  --df-weight-h2: 900;
+
+  --df-text-card-title: 1.5rem; /* 24px */
+  --df-lh-card-title: 1.04;     /* 25px */
+  --df-ls-card-title: -0.04em;  /* -0.96px */
+  --df-weight-card-title: 900;
+
+  --df-text-h3: 1.125rem;       /* 18px */
+  --df-lh-h3: 1.22;
+  --df-ls-h3: -0.02em;
+
+  --df-text-lead: clamp(1.125rem, 1.3vw, 1.25rem);
+  --df-lh-lead: 1.38;
+  --df-ls-lead: -0.012em;
+
+  --df-text-body: 0.96875rem;   /* 15.5px */
+  --df-lh-body: 1.48;
+  --df-ls-body: -0.005em;
+
+  --df-text-eyebrow: 0.72rem;   /* 11.5px */
+  --df-ls-eyebrow: 0.09em;
+
+  /* ========================================================================
+     2. COLOR & SURFACE SYSTEM (Extracted S2A Palette + Semantic Brand Tokens)
+     ======================================================================== */
+  --s2a-color-gray-1000: #131313;
+  --s2a-color-gray-900: #1f1f1f;
+  --s2a-color-gray-800: #2c2c2c;
+  --s2a-color-gray-700: #3e3e3e;
+  --s2a-color-gray-600: #505050;
+  --s2a-color-gray-500: #6e6e6e;
+  --s2a-color-gray-400: #8e8e8e;
+  --s2a-color-gray-300: #b3b3b3;
+  --s2a-color-gray-200: #d5d5d5;
+  --s2a-color-gray-100: #e9e9e9;
+  --s2a-color-gray-75: #f3f3f3;
+  --s2a-color-gray-50: #f8f8f8;
+  --s2a-color-gray-25: #ffffff;
+
+  /* Semantic Surface & Canvas Colors */
+  --df-bg-canvas: #ffffff;
   --df-bg-subtle: #f3f3f3;
+  --df-bg-bento: #f8f8f8;
   --df-bg-dark-stage: #0b0b10;
   --df-bg-dark-card: #131313;
 
-  /* Typography Colors */
+  /* Semantic Typography Colors */
   --df-text-primary: #131313;
   --df-text-secondary: #505050;
-  --df-text-on-dark: rgb(255, 255, 255);
+  --df-text-muted: #6e6e6e;
+  --df-text-on-dark: #ffffff;
   --df-text-on-dark-muted: rgba(255, 255, 255, 0.76);
 
-  /* Brand & Interactive Accents (Swap these variables to re-skin for any new brand) */
+  /* Brand & Interactive Accents (Dynamic via Live Sync Controller) */
   --df-accent-primary: #FA0F00;
+  --df-accent-primary-hover: #d73220;
+  --df-accent-secondary: #FF5C00;
   --df-accent-interactive: #3B63FB;
+  --df-accent-glow: rgba(250, 15, 0, 0.32);
   --df-accent-gradient: linear-gradient(108deg, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0) 98.86%);
 
   /* Borders & Glassmorphism Physics */
   --df-border-light: rgba(0, 0, 0, 0.08);
-  --df-border-dark: rgba(255, 255, 255, 0.12);
+  --df-border-dark: rgba(255, 255, 255, 0.14);
   --df-border-hover: rgba(255, 255, 255, 0.28);
   --df-glass-light: rgba(255, 255, 255, 0.92);
   --df-glass-dark: rgba(19, 19, 19, 0.78);
   --df-glass-pill: rgba(255, 255, 255, 0.14);
   --df-backdrop-blur: blur(20px) saturate(180%);
 
-  /* Fluid Typography Scale */
-  --df-text-hero: clamp(2.75rem, 5.2vw, 5rem);
-  --df-lh-hero: 0.95;
-  --df-ls-hero: -0.04em;
-
-  --df-text-h1: clamp(2.25rem, 4vw, 3.5rem);
-  --df-lh-h1: 1.0;
-  --df-ls-h1: -0.03em;
-
-  --df-text-h2: clamp(1.5rem, 2.4vw, 2.15rem);
-  --df-lh-h2: 1.05;
-
-  --df-text-h3: 1.5rem;
-  --df-text-lead: 1.25rem;
-  --df-text-body: 1rem;
-  --df-text-eyebrow: 0.8125rem;
-
-  /* Spatial & Layout Rhythm */
+  /* ========================================================================
+     3. SPATIAL RHYTHM, RADII & ELEVATION
+     ======================================================================== */
   --df-container-max: 1440px;
   --df-bento-gap: 24px;
-  --df-section-py: clamp(4rem, 7vw, 6.5rem);
+  --df-section-py: clamp(4.5rem, 7vw, 6.5rem);
 
-  /* Border Radii */
   --df-radius-pill: 9999px;
+  --df-radius-sheet: 32px;
   --df-radius-card-lg: 24px;
   --df-radius-card-md: 16px;
 
-  /* Elevation & Shadows */
   --df-shadow-ambient: rgba(255, 255, 255, 0.11) 0px 0px 0px 1px inset;
-  --df-shadow-hover: 0 24px 48px -12px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.16);
+  --df-shadow-hover: 0 28px 56px -12px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.06);
   --df-shadow-glass: 0 16px 40px rgba(0, 0, 0, 0.22);
 
-  /* Motion Easing Tokens */
+  /* ========================================================================
+     4. MOTION & PHYSICS SYSTEM TOKENS
+     ======================================================================== */
   --df-ease-out-expo: cubic-bezier(0.42, 0, 0, 1);
+  --df-ease-silk: cubic-bezier(0.16, 1, 0.3, 1);
   --df-ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
   --df-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --df-duration-fast: 180ms;
   --df-duration-normal: 350ms;
   --df-duration-slow: 650ms;
+  --df-lenis-lerp: 0.075;
+}
+
+/* ==========================================================================
+   LIVE FONT SYSTEM PRESETS (Swappable via `[data-df-font-preset]` on <html>)
+   ========================================================================== */
+
+/* Preset 1 (Default): S2A Display Black Tight — Inter Tight 900 + Plus Jakarta Sans */
+html[data-df-font-preset="s2a-tight"],
+html:not([data-df-font-preset]) {
+  --df-font-display: "Inter Tight", "Plus Jakarta Sans", system-ui, sans-serif;
+  --df-font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --df-ls-hero: -0.042em;
+  --df-ls-h1: -0.036em;
+  --df-ls-card-title: -0.04em;
+}
+
+/* Preset 2: Architectural Neo-Grotesk — Syne 800 + Plus Jakarta Sans */
+html[data-df-font-preset="syne-editorial"] {
+  --df-font-display: "Syne", "Inter Tight", system-ui, sans-serif;
+  --df-font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --df-ls-hero: -0.035em;
+  --df-ls-h1: -0.03em;
+  --df-ls-card-title: -0.028em;
+}
+
+/* Preset 3: Precision Geometric — Space Grotesk 700 + Inter */
+html[data-df-font-preset="space-tech"] {
+  --df-font-display: "Space Grotesk", "Inter Tight", system-ui, sans-serif;
+  --df-font-sans: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+  --df-ls-hero: -0.045em;
+  --df-ls-h1: -0.038em;
+  --df-ls-card-title: -0.035em;
+}
+
+/* ==========================================================================
+   LIVE COLOR THEME PRESETS (Swappable via `[data-df-color-preset]` on <html>)
+   ========================================================================== */
+
+/* Theme 1 (Default): Kinetix S2A Crimson */
+html[data-df-color-preset="crimson"],
+html:not([data-df-color-preset]) {
+  --df-accent-primary: #FA0F00;
+  --df-accent-primary-hover: #d73220;
+  --df-accent-secondary: #FF5C00;
+  --df-accent-interactive: #3B63FB;
+  --df-accent-glow: rgba(250, 15, 0, 0.34);
+}
+
+/* Theme 2: Electric Cobalt */
+html[data-df-color-preset="cobalt"] {
+  --df-accent-primary: #274DEA;
+  --df-accent-primary-hover: #1b3bc4;
+  --df-accent-secondary: #00C2FF;
+  --df-accent-interactive: #7A28FF;
+  --df-accent-glow: rgba(39, 77, 234, 0.38);
+}
+
+/* Theme 3: Ultraviolet Synth */
+html[data-df-color-preset="ultraviolet"] {
+  --df-accent-primary: #7A28FF;
+  --df-accent-primary-hover: #6215e0;
+  --df-accent-secondary: #FF2E93;
+  --df-accent-interactive: #3B63FB;
+  --df-accent-glow: rgba(122, 40, 255, 0.38);
+}
+
+/* Theme 4: Sovereign Emerald */
+html[data-df-color-preset="emerald"] {
+  --df-accent-primary: #10B981;
+  --df-accent-primary-hover: #059669;
+  --df-accent-secondary: #3B63FB;
+  --df-accent-interactive: #0EA5E9;
+  --df-accent-glow: rgba(16, 185, 129, 0.36);
+}
+
+/* ==========================================================================
+   SEMANTIC TYPOGRAPHY ROLE CLASSES (Optical Placement & Balance)
+   ========================================================================== */
+
+body {
+  font-family: var(--df-font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 80px Hero Headline — Razor-tight -0.042em tracking, 0.94 line-height, balanced wrap */
+.df-type-hero {
+  font-family: var(--df-font-display);
+  font-size: var(--df-text-hero);
+  line-height: var(--df-lh-hero);
+  letter-spacing: var(--df-ls-hero);
+  font-weight: var(--df-weight-hero);
+  font-optical-sizing: auto;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+  text-wrap: balance;
+}
+
+/* 56px Section H1/H2 Display — Tight editorial lockup */
+.df-type-h1 {
+  font-family: var(--df-font-display);
+  font-size: var(--df-text-h1);
+  line-height: var(--df-lh-h1);
+  letter-spacing: var(--df-ls-h1);
+  font-weight: var(--df-weight-h1);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+/* 38px Flagship Feature Card Headline */
+.df-type-h2 {
+  font-family: var(--df-font-display);
+  font-size: var(--df-text-h2);
+  line-height: var(--df-lh-h2);
+  letter-spacing: var(--df-ls-h2);
+  font-weight: var(--df-weight-h2);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+/* 24px / 25px / -0.96px Extracted Adobe Bento Card Title */
+.df-type-card-title {
+  font-family: var(--df-font-display);
+  font-size: var(--df-text-card-title);
+  line-height: var(--df-lh-card-title);
+  letter-spacing: var(--df-ls-card-title);
+  font-weight: var(--df-weight-card-title);
+  font-optical-sizing: auto;
+  text-wrap: balance;
+}
+
+/* 18px Carousel Card Title */
+.df-type-carousel-title {
+  font-family: var(--df-font-display);
+  font-size: var(--df-text-h3);
+  line-height: var(--df-lh-h3);
+  letter-spacing: var(--df-ls-h3);
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+/* 20px Section Lead Copy — Pretty optical paragraph rag */
+.df-type-lead {
+  font-family: var(--df-font-sans);
+  font-size: var(--df-text-lead);
+  line-height: var(--df-lh-lead);
+  letter-spacing: var(--df-ls-lead);
+  font-weight: 450;
+  text-wrap: pretty;
+}
+
+/* 15.5px Editorial Body Copy */
+.df-type-body {
+  font-family: var(--df-font-sans);
+  font-size: var(--df-text-body);
+  line-height: var(--df-lh-body);
+  letter-spacing: var(--df-ls-body);
+  text-wrap: pretty;
+}
+
+/* 11.5px Technical Eyebrow Pill */
+.df-type-eyebrow {
+  font-family: var(--df-font-mono);
+  font-size: var(--df-text-eyebrow);
+  letter-spacing: var(--df-ls-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   GPU COMPOSITING & LENIS SMOOTH SCROLL UTILITIES
+   ========================================================================== */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+[data-df-hero-stage],
+[data-df-elastic-carousel],
+[data-df-elastic-item],
+[data-df-bento-card],
+[data-df-card-media] {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Dynamic Brand Accent Utilities */
+.df-bg-accent {
+  background-color: var(--df-accent-primary) !important;
+}
+
+.df-text-accent {
+  color: var(--df-accent-primary) !important;
+}
+
+.df-border-accent {
+  border-color: var(--df-accent-primary) !important;
 }

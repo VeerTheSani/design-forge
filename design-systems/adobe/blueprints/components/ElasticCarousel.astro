@@ -99,17 +99,14 @@ const {
   <div class="max-w-[1440px] mx-auto">
     <!-- Extracted Section Header (56px / 56px line-height / -1.68px tracking) -->
     <div class="text-center max-w-[780px] mx-auto mb-14">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3f3f3] border border-black/[0.08] text-[11px] font-mono uppercase tracking-widest text-[#131313] mb-4">
-        <span class="w-2 h-2 rounded-full bg-[#FA0F00]"></span>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f3f3f3] border border-black/[0.08] df-type-eyebrow text-[#131313] mb-4">
+        <span class="w-2 h-2 rounded-full df-bg-accent"></span>
         <span>KINETIX MODULAR ARCHITECTURE • 5 ELASTIC SLOTS</span>
       </div>
-      <h2
-        class="font-black tracking-[-0.03em] text-[#131313] mb-4"
-        style="font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.0;"
-      >
+      <h2 class="df-type-h1 text-[#131313] mb-4">
         {heading}
       </h2>
-      <p class="text-[18px] sm:text-[20px] leading-[1.35] text-[#505050]">
+      <p class="df-type-lead text-[#505050]">
         {subheading}
       </p>
     </div>
@@ -145,7 +142,7 @@ const {
               <div class="relative h-[280px] rounded-[14px] overflow-hidden mb-4">
                 <div
                   data-df-card-media
-                  class="relative w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)] flex flex-col justify-between p-4 text-white"
+                  class="relative w-full h-full flex flex-col justify-between p-4 text-white"
                   style={`background: ${item.visualGradient};`}
                 >
                   {item.videoFile ? (
@@ -184,10 +181,10 @@ const {
 
             <!-- Bottom Copy Block -->
             <div class="px-1 pb-1">
-              <h3 class="font-bold text-[17px] leading-[1.25] text-[#131313] mb-1.5 tracking-[-0.01em]">
+              <h3 class="df-type-carousel-title text-[#131313] mb-1.5">
                 {item.title}
               </h3>
-              <p class="text-[14px] leading-[1.4] text-[#505050] line-clamp-3">
+              <p class="df-type-body text-[14px] leading-[1.42] text-[#505050] line-clamp-3">
                 {item.description}
               </p>
             </div>

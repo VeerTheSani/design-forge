@@ -3,6 +3,7 @@ import '../../../../design-systems/adobe/tokens/tokens.css';
 import tokensData from '../../../../design-systems/adobe/tokens/tokens.json';
 import motionData from '../../../../design-systems/adobe/motion/motion-dna.json';
 import mediaManifest from '../../../../design-systems/adobe/media-prompts/media-manifest.json';
+import SyncController from '../../../../design-systems/adobe/blueprints/components/SyncController.astro';
 
 const rawProps = tokensData.rawInspection?.rootCustomProperties || {};
 const s2aColors = Object.entries(rawProps)
@@ -25,7 +26,7 @@ const nanoPrompts = mediaManifest.nanoBananaImagePrompts || [];
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth antialiased">
+<html lang="en" class="antialiased" data-df-font-preset="s2a-tight" data-df-color-preset="crimson">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,7 +34,7 @@ const nanoPrompts = mediaManifest.nanoBananaImagePrompts || [];
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Syne:wght@700;800&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -431,7 +432,12 @@ const nanoPrompts = mediaManifest.nanoBananaImagePrompts || [];
       </section>
     </main>
 
+    <SyncController />
+
     <script>
+      import { bootDesignSystemMotion } from '../../../../design-systems/adobe/motion/gsap-choreography';
+      bootDesignSystemMotion();
+
       document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const text = btn.getAttribute('data-copy') || '';

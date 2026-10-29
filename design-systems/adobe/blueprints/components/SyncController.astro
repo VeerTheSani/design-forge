@@ -1,0 +1,265 @@
+---
+/**
+ * DESIGN FORGE BLUEPRINT: SyncController.astro
+ * Live 4-Pillar Design System Sync Dock (Typography + Brand Color + Motion Physics)
+ * - Lets you switch Display Font Systems, Brand Accent Palettes, and Lenis/GSAP Motion Physics in real time
+ * - Persists across reloads & tabs via localStorage + storage events
+ */
+---
+
+<div
+  data-df-sync-dock
+  class="fixed bottom-5 right-5 z-50 select-none font-sans"
+>
+  <!-- Collapsed Pill Trigger -->
+  <div class="flex items-center gap-2">
+    <button
+      type="button"
+      data-df-sync-toggle
+      class="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#131318]/90 hover:bg-[#131318] text-white border border-white/20 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.45)] transition-all duration-200 hover:scale-[1.02]"
+    >
+      <span class="w-2.5 h-2.5 rounded-full df-bg-accent animate-pulse"></span>
+      <span class="text-[12px] font-mono font-bold tracking-wider uppercase">Design Sync</span>
+      <span
+        data-df-sync-badge
+        class="px-2 py-0.5 rounded-full bg-white/10 text-[10px] font-mono text-white/80"
+      >
+        Inter Tight 900 • Butter 0.075
+      </span>
+    </button>
+  </div>
+
+  <!-- Expanded Glassmorphic Control Panel -->
+  <div
+    data-df-sync-panel
+    class="hidden mt-3 w-[340px] rounded-[22px] bg-[#111116]/95 text-white border border-white/15 backdrop-blur-2xl shadow-[0_28px_70px_rgba(0,0,0,0.65)] p-5"
+  >
+    <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-white/10">
+      <div>
+        <div class="text-[11px] font-mono uppercase tracking-widest text-white/50">Live System Sync</div>
+        <div class="text-[14px] font-bold tracking-[-0.01em] text-white">Typography • Motion • Color</div>
+      </div>
+      <button
+        type="button"
+        data-df-sync-close
+        class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs text-white/70 hover:text-white"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- 1. Font System Switcher -->
+    <div class="mb-4">
+      <div class="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-white/60 mb-2">
+        <span>1. Display Font System</span>
+        <span class="text-emerald-400">Optical Kerning</span>
+      </div>
+      <div class="grid grid-cols-1 gap-1.5">
+        <button
+          type="button"
+          data-df-set-font="s2a-tight"
+          class="df-sync-btn text-left px-3 py-2 rounded-xl border border-white/15 bg-white/10 hover:bg-white/15 text-[12px] flex items-center justify-between transition-colors"
+        >
+          <span class="font-bold" style="font-family: 'Inter Tight', sans-serif;">Inter Tight 900 Black (S2A Match)</span>
+          <span class="text-[10px] font-mono opacity-65">-0.042em</span>
+        </button>
+        <button
+          type="button"
+          data-df-set-font="syne-editorial"
+          class="df-sync-btn text-left px-3 py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/10 text-[12px] flex items-center justify-between transition-colors"
+        >
+          <span class="font-bold" style="font-family: 'Syne', sans-serif;">Syne 800 Editorial Display</span>
+          <span class="text-[10px] font-mono opacity-65">-0.035em</span>
+        </button>
+        <button
+          type="button"
+          data-df-set-font="space-tech"
+          class="df-sync-btn text-left px-3 py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/10 text-[12px] flex items-center justify-between transition-colors"
+        >
+          <span class="font-bold" style="font-family: 'Space Grotesk', sans-serif;">Space Grotesk 700 Technical</span>
+          <span class="text-[10px] font-mono opacity-65">-0.045em</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. Motion Physics Switcher -->
+    <div class="mb-4">
+      <div class="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-white/60 mb-2">
+        <span>2. Lenis + GSAP Scrub Physics</span>
+        <span class="text-amber-300">60fps Ticker</span>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5">
+        <button
+          type="button"
+          data-df-set-motion="butter"
+          class="px-2.5 py-2 rounded-xl border border-white/15 bg-white/10 hover:bg-white/15 text-center text-[11px] font-semibold transition-colors"
+        >
+          <div>Butter</div>
+          <div class="text-[9px] font-mono opacity-60">lerp 0.075</div>
+        </button>
+        <button
+          type="button"
+          data-df-set-motion="snappy"
+          class="px-2.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/10 text-center text-[11px] font-semibold transition-colors"
+        >
+          <div>Snappy</div>
+          <div class="text-[9px] font-mono opacity-60">lerp 0.13</div>
+        </button>
+        <button
+          type="button"
+          data-df-set-motion="cinematic"
+          class="px-2.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/10 text-center text-[11px] font-semibold transition-colors"
+        >
+          <div>Float</div>
+          <div class="text-[9px] font-mono opacity-60">lerp 0.048</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. Brand Color Accent Sync -->
+    <div>
+      <div class="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-white/60 mb-2">
+        <span>3. Brand Accent Sync</span>
+        <span class="text-white/50">--df-accent-primary</span>
+      </div>
+      <div class="grid grid-cols-4 gap-2">
+        <button
+          type="button"
+          data-df-set-color="crimson"
+          class="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-white/20 bg-white/10 text-[11px] font-semibold"
+        >
+          <span class="w-3 h-3 rounded-full bg-[#FA0F00]"></span>
+          <span>S2A</span>
+        </button>
+        <button
+          type="button"
+          data-df-set-color="cobalt"
+          class="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] text-[11px] font-semibold"
+        >
+          <span class="w-3 h-3 rounded-full bg-[#274DEA]"></span>
+          <span>Cobalt</span>
+        </button>
+        <button
+          type="button"
+          data-df-set-color="ultraviolet"
+          class="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] text-[11px] font-semibold"
+        >
+          <span class="w-3 h-3 rounded-full bg-[#7A28FF]"></span>
+          <span>Synth</span>
+        </button>
+        <button
+          type="button"
+          data-df-set-color="emerald"
+          class="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] text-[11px] font-semibold"
+        >
+          <span class="w-3 h-3 rounded-full bg-[#10B981]"></span>
+          <span>Mint</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const htmlEl = document.documentElement;
+  const toggleBtn = document.querySelector<HTMLButtonElement>('[data-df-sync-toggle]');
+  const closeBtn = document.querySelector<HTMLButtonElement>('[data-df-sync-close]');
+  const panel = document.querySelector<HTMLElement>('[data-df-sync-panel]');
+  const badge = document.querySelector<HTMLElement>('[data-df-sync-badge]');
+
+  const fontButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-df-set-font]'));
+  const motionButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-df-set-motion]'));
+  const colorButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-df-set-color]'));
+
+  const fontLabels: Record<string, string> = {
+    's2a-tight': 'Inter Tight 900',
+    'syne-editorial': 'Syne 800',
+    'space-tech': 'Space Grotesk',
+  };
+
+  const motionLabels: Record<string, string> = {
+    butter: 'Butter 0.075',
+    snappy: 'Snappy 0.13',
+    cinematic: 'Float 0.048',
+  };
+
+  function updateUIState() {
+    const font = localStorage.getItem('df-font-preset') || 's2a-tight';
+    const motion = localStorage.getItem('df-motion-preset') || 'butter';
+    const color = localStorage.getItem('df-color-preset') || 'crimson';
+
+    htmlEl.setAttribute('data-df-font-preset', font);
+    htmlEl.setAttribute('data-df-color-preset', color);
+
+    if (badge) {
+      badge.textContent = `${fontLabels[font] || 'Inter Tight 900'} • ${motionLabels[motion] || 'Butter 0.075'}`;
+    }
+
+    fontButtons.forEach((btn) => {
+      const active = btn.dataset.dfSetFont === font;
+      btn.className = active
+        ? 'df-sync-btn text-left px-3 py-2 rounded-xl border border-white/30 bg-white/15 text-[12px] flex items-center justify-between transition-colors'
+        : 'df-sync-btn text-left px-3 py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/10 text-[12px] flex items-center justify-between transition-colors';
+    });
+
+    motionButtons.forEach((btn) => {
+      const active = btn.dataset.dfSetMotion === motion;
+      btn.className = active
+        ? 'px-2.5 py-2 rounded-xl border border-white/30 bg-white/15 text-center text-[11px] font-semibold transition-colors'
+        : 'px-2.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/10 text-center text-[11px] font-semibold transition-colors';
+    });
+
+    colorButtons.forEach((btn) => {
+      const active = btn.dataset.dfSetColor === color;
+      btn.className = active
+        ? 'flex items-center justify-center gap-1.5 py-2 rounded-xl border border-white/30 bg-white/15 text-[11px] font-semibold'
+        : 'flex items-center justify-center gap-1.5 py-2 rounded-xl border border-white/10 bg-white/[0.03] text-[11px] font-semibold';
+    });
+  }
+
+  toggleBtn?.addEventListener('click', () => {
+    panel?.classList.toggle('hidden');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    panel?.classList.add('hidden');
+  });
+
+  fontButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.dfSetFont || 's2a-tight';
+      localStorage.setItem('df-font-preset', val);
+      updateUIState();
+    });
+  });
+
+  motionButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.dfSetMotion || 'butter';
+      localStorage.setItem('df-motion-preset', val);
+      if ((window as any).__dfMotion?.setMotionPreset) {
+        (window as any).__dfMotion.setMotionPreset(val);
+      }
+      updateUIState();
+    });
+  });
+
+  colorButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.dfSetColor || 'crimson';
+      localStorage.setItem('df-color-preset', val);
+      updateUIState();
+    });
+  });
+
+  // Cross-tab synchronization
+  window.addEventListener('storage', () => {
+    updateUIState();
+    const motion = localStorage.getItem('df-motion-preset') || 'butter';
+    if ((window as any).__dfMotion?.setMotionPreset) {
+      (window as any).__dfMotion.setMotionPreset(motion);
+    }
+  });
+
+  updateUIState();
+</script>

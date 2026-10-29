@@ -24,14 +24,11 @@ const {
   <div class="max-w-[1440px] mx-auto">
     <!-- Section Title -->
     <div class="text-center max-w-[720px] mx-auto mb-14">
-      <div class="text-[12px] font-mono font-bold uppercase tracking-widest text-[#FA0F00] mb-2">{eyebrow}</div>
-      <h2
-        class="font-black tracking-[-0.03em] text-[#131313] mb-3"
-        style="font-size: clamp(2.2rem, 3.8vw, 3.5rem); line-height: 1.0;"
-      >
+      <div class="df-type-eyebrow df-text-accent mb-2">{eyebrow}</div>
+      <h2 class="df-type-h1 text-[#131313] mb-3">
         {heading}
       </h2>
-      <p class="text-[18px] text-[#505050]">{subheading}</p>
+      <p class="df-type-lead text-[#505050]">{subheading}</p>
     </div>
 
     <!-- Asymmetric 12-Column Bento Grid -->
@@ -45,19 +42,16 @@ const {
           <div>
             <div class="flex items-center gap-2.5 mb-6">
               <img src="/logo-kinetix.svg" alt="KINETIX" class="w-7 h-7 rounded-[7px]" />
-              <span class="text-[12px] font-mono font-bold tracking-wider text-white/80 uppercase">
+              <span class="df-type-eyebrow text-white/80">
                 FLAGSHIP BENTO SLOT • NANO-IMG-06 (1187×540)
               </span>
             </div>
 
-            <h3
-              class="font-black text-white mb-4"
-              style="font-size: clamp(1.75rem, 2.5vw, 2.35rem); line-height: 1.05; letter-spacing: -0.04em;"
-            >
+            <h3 class="df-type-h2 text-white mb-4">
               Turn live neural telemetry into sub-millisecond routing decisions.
             </h3>
 
-            <p class="text-[16px] leading-[1.45] text-white/75 mb-6">
+            <p class="df-type-body text-white/75 mb-6">
               KINETIX Pulse continuously profiles token latency, KV-cache hit rates, and GPU thermal headroom across regions—automatically shifting traffic before bottlenecks occur.
             </p>
           </div>
@@ -78,7 +72,7 @@ const {
         <div class="lg:col-span-7 relative overflow-hidden min-h-[300px] bg-gradient-to-br from-[#274dea] via-[#7a28ff] to-[#0e1843]">
           <div
             data-df-card-media
-            class="relative w-full h-full p-8 flex flex-col justify-between transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+            class="relative w-full h-full p-8 flex flex-col justify-between"
           >
             <!-- Auto-loads /media/images/Gemini_Generated_Image_a32suia32suia32s.png (1.10x overscan crops out bottom-right Gemini watermark) -->
             <img
@@ -122,7 +116,7 @@ const {
         <div class="relative h-[260px] overflow-hidden bg-gradient-to-br from-[#0e1843] via-[#274dea] to-[#729efd]">
           <div
             data-df-card-media
-            class="relative w-full h-full p-5 flex flex-col justify-between text-white transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+            class="relative w-full h-full p-5 flex flex-col justify-between text-white"
           >
             <img
               src="/media/images/Gemini_Generated_Image_h2tmpoh2tmpoh2tm.png"
@@ -140,13 +134,10 @@ const {
         </div>
         <div class="p-7 flex-1 flex flex-col justify-between">
           <div>
-            <h3
-              class="font-black text-[#131313] mb-2"
-              style="font-size: 24px; line-height: 24px; letter-spacing: -0.96px;"
-            >
+            <h3 class="df-type-card-title text-[#131313] mb-2">
               Fine-tune only the weights you need.
             </h3>
-            <p class="text-[15px] leading-[1.4] text-[#505050] mb-5">
+            <p class="df-type-body text-[#505050] mb-5">
               Hot-swap LoRA adapters per tenant request in under 40 milliseconds without reloading base model checkpoints.
             </p>
           </div>
@@ -164,7 +155,7 @@ const {
         <div class="relative h-[260px] overflow-hidden bg-gradient-to-br from-[#2b0938] via-[#7a28ff] to-[#ff513d]">
           <div
             data-df-card-media
-            class="relative w-full h-full p-5 flex flex-col justify-between text-white transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+            class="relative w-full h-full p-5 flex flex-col justify-between text-white"
           >
             <video
               src="/media/videos/Glass_prism_splitting_laser_beam_20261017220851.mp4"
@@ -185,13 +176,10 @@ const {
         </div>
         <div class="p-7 flex-1 flex flex-col justify-between">
           <div>
-            <h3
-              class="font-black text-[#131313] mb-2"
-              style="font-size: 24px; line-height: 24px; letter-spacing: -0.96px;"
-            >
+            <h3 class="df-type-card-title text-[#131313] mb-2">
               Introducing Spatial Shader Engine.
             </h3>
-            <p class="text-[15px] leading-[1.4] text-[#505050] mb-5">
+            <p class="df-type-body text-[#505050] mb-5">
               Compile real-time WebGPU glass physics, caustics, and interactive motion stages directly from natural language specs.
             </p>
           </div>
@@ -209,7 +197,7 @@ const {
         <div class="relative h-[260px] overflow-hidden bg-gradient-to-br from-[#3b0905] via-[#f03823] to-[#ffbcb4]">
           <div
             data-df-card-media
-            class="relative w-full h-full p-5 flex flex-col justify-between text-white transition-transform duration-500 ease-[cubic-bezier(0.42,0,0,1)]"
+            class="relative w-full h-full p-5 flex flex-col justify-between text-white"
           >
             <img
               src="/media/images/Gemini_Generated_Image_m3tbi4m3tbi4m3tb.png"
@@ -227,13 +215,10 @@ const {
         </div>
         <div class="p-7 flex-1 flex flex-col justify-between">
           <div>
-            <h3
-              class="font-black text-[#131313] mb-2"
-              style="font-size: 24px; line-height: 24px; letter-spacing: -0.96px;"
-            >
+            <h3 class="df-type-card-title text-[#131313] mb-2">
               Reason across 100,000+ files instantly.
             </h3>
-            <p class="text-[15px] leading-[1.4] text-[#505050] mb-5">
+            <p class="df-type-body text-[#505050] mb-5">
               Structured AST indexing links every API contract, database schema, and UI component with deterministic citations.
             </p>
           </div>
